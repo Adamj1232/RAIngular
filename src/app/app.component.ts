@@ -12,8 +12,7 @@ import { HttpClient } from "@angular/common/http";
 })
 
 export class AppComponent {
-  title = 'Get Your Weather';
-
+  title = 'RAIngULAR - Weather Forcast';
   rForm: FormGroup;
   post: any;
   zip: string = '';

@@ -36,7 +36,7 @@ label {
 }
 
 .user-input {
-  font-size: .9em;
+  font-size: 1em;
 }
 
 .submit {
@@ -57,7 +57,7 @@ label {
 .submit:hover {
   font-weight: bold;
   border: 1px solid white;
-  background-color: #94aecc;
+  background-color: rgba(148, 174, 204, 0.56);
 }
 
 .full-forecast {
@@ -131,5 +131,24 @@ label {
 
   .full-hourly {
     justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 575px) {
+
+  form {
+    flex-direction: column;
+  }
+
+  label {
+    margin: 20px auto 0;
+  }
+
+  input {
+    margin: 20px auto;
+  }
+
+  .submit {
+    width: 173px;
   }
 }
