@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'current-weather',
-  template: `<h1>currentttt weather component is hooked up</h1>
+  template: `<h1></h1>
 `
 })
 

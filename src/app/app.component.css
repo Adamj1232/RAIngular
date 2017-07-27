@@ -1,16 +1,63 @@
 input {
-  height: 1.2em;
+  height: 27px;
   margin: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 2px;
 }
 
 ul {
   list-style: none;
   padding: 0 20px;
+  min-width: 85px;
+  margin: 0 auto;
 }
 
 img {
   height: 60px;
   width: 60px;
+  margin: 0 auto;
+}
+
+header {
+  margin: 15px 0 25px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+label {
+  font-size: 1.3em;
+  margin: auto 20px;
+}
+
+.user-input {
+  font-size: .9em;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 90px;
+  color: black;
+  background-color: transparent;
+  font-weight: bold;
+  margin: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: auto 20px;
+}
+
+.submit:hover {
+  font-weight: bold;
+  border: 1px solid white;
+  background-color: #94aecc;
 }
 
 .full-forecast {
@@ -45,11 +92,11 @@ img {
   border-radius: 40px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   margin: 25px 0 0;
   width: 90%;
   padding: 20px;
+  overflow: scroll;
+  justify-content: center;
 }
 
 .hourly {
@@ -59,6 +106,7 @@ img {
 
 .hourly-info {
   text-align: center;
+  margin: 0 auto;
 }
 
 .high-temp {
@@ -73,4 +121,15 @@ img {
 
 .not-found-alert {
   text-align: center;
+}
+
+@media screen and (max-width: 790px) {
+
+  label {
+    font-size: 1.1em;
+  }
+
+  .full-hourly {
+    justify-content: flex-start;
+  }
 }
