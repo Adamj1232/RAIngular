@@ -1,0 +1,9 @@
+html {
+  margin: 0;
+  font-family: sans-serif;
+  background: url(clouds.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

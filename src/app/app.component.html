@@ -1,0 +1,56 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<header style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <div class='search-bar'>
+    <form [formGroup]="rForm" (ngSubmit)="searchZip(rForm.value)">
+
+      <label>Search Weather By 5 Digit Zip Code
+      <input
+        formControlName='zip'
+        type="text"
+        placeholder="enter zip code">
+      </label>
+
+      <section
+        *ngIf="!rForm.controls['zip'].valid && rForm.controls['zip'].touched">
+        {{ zipAlert }}
+      </section>
+      <input type='submit' value='Submit Form' [disabled]='!rForm.valid'>
+
+    </form>
+  </div>
+</header>
+<section *ngIf="locationAlert">
+  <h2 class='not-found-alert'>{{locationAlert}}</h2>
+</section>
+<section *ngIf="searchedLocation && !locationAlert" class='full-forecast'>
+  <div class='current'>
+    <h1>{{searchedLocation}}</h1>
+    <img class='main-img' src ='{{currentWeatherImgUrl}}' />
+    <h3>{{currentCondition}}</h3>
+    <h4>{{currentDate[0]}}</h4>
+    <h3>{{currentTemp}}</h3>
+    <h4 class='high-temp'>{{expectedHigh}}°F/<span class='low-temp'>{{expectedLow}}°F</span></h4>
+    <h3>{{summary}}</h3>
+  </div>
+  <section  class='full-hourly'>
+    <div *ngFor="let hour of hourlyForecast; let i=index">
+      <ul  *ngIf='i < 7'>
+        <li class='hourly'>
+          <img src ='{{hour["icon_url"]}}' />
+          <div class='hourly-info'>
+            {{hour['FCTTIME'].civil}}
+            {{hour['temp'].english}}°F
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+</section>
+
+<current-weather></current-weather>
+<seven-hour-weather></seven-hour-weather>
