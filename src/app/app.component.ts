@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 
 // import { Weather } from './weather'
 // import CurrentWeatherCleaner from '../assets/helper'
+import { WeatherService } from './weather.service'
 
 
 
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   title = 'RAIngULAR - Weather Forcast';
   rForm: FormGroup;
   post: any;
-  zip: string = '';
+  private zip: string = '';
   zipAlert: string = '5 Digit Zip code required';
   locationAlert: string = ''
   locationWeather: object = {};
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
   hourlyForecast: any[] = [];
 
 
-  constructor(private http: HttpClient, fb: FormBuilder){
+  constructor(private http: HttpClient, fb: FormBuilder, public weatherServ: WeatherService){
     this.rForm = fb.group({
       'zip':[
             null,
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
             ])
       ]
     });
+
   };
 
   ngOnInit() {
@@ -53,13 +55,13 @@ export class AppComponent implements OnInit {
 
   searchZip(searched){
     this.locationAlert = ''
-    const api = 'https://api.wunderground.com/api/bf0b8a6ac19ed8ff/forecast/hourly/forecast10day/conditions/q/' + this.zip + '.json'
     this.zip = searched.zip
-    this.http.get('https://api.wunderground.com/api/bf0b8a6ac19ed8ff/forecast/hourly/forecast10day/conditions/q/' + this.zip + '.json')
+    // this.http.get('https://api.wunderground.com/api/bf0b8a6ac19ed8ff/forecast/hourly/forecast10day/conditions/q/' + this.zip + '.json')
+    this.weatherServ
+    .getWeather(searched.zip)
     .subscribe(
       resp => {
         if(!resp['response'].error){
-            // console.log(resp)
           this.locationWeather = resp
           this.hourlyForecast = resp['hourly_forecast']
           this.searchedLocation = resp['current_observation'].display_location.full
@@ -76,7 +78,7 @@ export class AppComponent implements OnInit {
   }
 
   currentWeatherCleaner(weatherObj){
-    // console.log(weatherObj)
+
     this.locationWeather = weatherObj
 
     this.searchedLocation = weatherObj['current_observation'].display_location.full

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CurrentWeatherComponent } from './current-weather.component'
 import { SevenHourWeatherComponent } from './seven-hour-weather.component'
+import { WeatherService } from './weather.service'
 
 
 import { AppComponent } from './app.component';
@@ -20,7 +21,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

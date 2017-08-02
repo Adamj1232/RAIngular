@@ -29,23 +29,6 @@
 <section *ngIf="locationWeather && !locationAlert" class='full-forecast'>
   <current-weather [weather]="locationWeather"></current-weather>
 
-  <section  class='full-hourly'>
-    <div *ngFor="let hour of hourlyForecast; let i=index">
-      <ul  *ngIf='i < 7'>
-        <li class='hourly'>
-          <img src ='{{hour["icon_url"]}}' />
-          <h3 class='hourly-info'>
-            {{ hour['FCTTIME'].civil }}
-          </h3>
-          <h3 class='hourly-info'>
-            {{ hour['temp'].english }}°F
-          </h3>
-        </li>
-      </ul>
-    </div>
+  <seven-hour-weather [hourlyForecast]="hourlyForecast"></seven-hour-weather>
 
-  </section>
 </section>
-
-<!-- <current-weather [weather]='locationWeather'></current-weather> -->
-<seven-hour-weather></seven-hour-weather>

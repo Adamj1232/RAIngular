@@ -1,4 +1,4 @@
-<div class='current'>
+<div class='current' *ngIf="weather">
   <h1 class='current-location'>{{ weather['current_observation'].display_location.full }}</h1>
   <img class='main-img' src ="{{ weather['current_observation'].icon_url }}" />
   <h2>{{ weather['current_observation'].weather }}</h2>
