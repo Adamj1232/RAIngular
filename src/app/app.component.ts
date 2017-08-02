@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
+
+// import { Weather } from './weather'
 // import CurrentWeatherCleaner from '../assets/helper'
 
 
@@ -11,7 +13,7 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'RAIngULAR - Weather Forcast';
   rForm: FormGroup;
   post: any;
@@ -57,10 +59,14 @@ export class AppComponent {
     .subscribe(
       resp => {
         if(!resp['response'].error){
+            // console.log(resp)
           this.locationWeather = resp
+          this.hourlyForecast = resp['hourly_forecast']
+          this.searchedLocation = resp['current_observation'].display_location.full
           this.currentWeatherCleaner(resp)
           this.rForm.reset()
           localStorage.setItem('storedLocation', this.zip);
+          console.log(this.locationWeather)
         } else {
           this.locationAlert = resp['response'].error.description
           console.log(resp['response'].error.description)
@@ -70,13 +76,15 @@ export class AppComponent {
   }
 
   currentWeatherCleaner(weatherObj){
+    // console.log(weatherObj)
+    this.locationWeather = weatherObj
+
     this.searchedLocation = weatherObj['current_observation'].display_location.full
 
     this.currentCondition = weatherObj['current_observation'].weather
 
     let currentDateReturned = weatherObj['current_observation'].local_time_rfc822
 
-    console.log(currentDateReturned.split(/[12][0-9]{3}/))
     this.currentDate = currentDateReturned.split(/[12][0-9]{3}/)
 
     this.currentTemp = weatherObj['current_observation'].tempurature_string

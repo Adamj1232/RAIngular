@@ -1,5 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
 <header style="text-align:center">
   <h1>
     Welcome to {{title}}!
@@ -28,16 +26,9 @@
 <section *ngIf="locationAlert">
   <h2 class='not-found-alert'>{{ locationAlert }}</h2>
 </section>
-<section *ngIf="searchedLocation && !locationAlert" class='full-forecast'>
-  <div class='current'>
-    <h1>{{ searchedLocation }}</h1>
-    <img class='main-img' src ='{{currentWeatherImgUrl}}' />
-    <h3>{{ currentCondition }}</h3>
-    <h4>{{ currentDate[0] }}</h4>
-    <h3>{{ currentTemp }}</h3>
-    <h4 class='high-temp'>{{ expectedHigh }}°F/<span class='low-temp'>{{ expectedLow }}°F</span></h4>
-    <h3>{{ summary }}</h3>
-  </div>
+<section *ngIf="locationWeather && !locationAlert" class='full-forecast'>
+  <current-weather [weather]="locationWeather"></current-weather>
+
   <section  class='full-hourly'>
     <div *ngFor="let hour of hourlyForecast; let i=index">
       <ul  *ngIf='i < 7'>
@@ -56,5 +47,5 @@
   </section>
 </section>
 
-<current-weather></current-weather>
+<!-- <current-weather [weather]='locationWeather'></current-weather> -->
 <seven-hour-weather></seven-hour-weather>
