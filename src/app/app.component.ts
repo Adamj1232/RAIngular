@@ -17,9 +17,9 @@ export class AppComponent implements OnInit {
   rForm: FormGroup;
   private zip: string = '';
   private zipAlert: string = '5 Digit Zip code required';
-  private locationAlert: string = ''
-  private locationWeather: object = {}
-  private hourlyForecast: object = {}
+  private locationAlert: string = '';
+  private locationWeather: object;
+  private hourlyForecast: object;
 
 
    constructor(private http: HttpClient, fb: FormBuilder, public weatherServ: WeatherService){

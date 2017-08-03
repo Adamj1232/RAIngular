@@ -26,7 +26,7 @@
 <section *ngIf="locationAlert">
   <h2 class='not-found-alert'>{{ locationAlert }}</h2>
 </section>
-<section *ngIf="locationWeather && !locationAlert" class='full-forecast'>
+<section *ngIf="locationWeather" class='full-forecast'>
   <current-weather [weather]="locationWeather"></current-weather>
 
   <seven-hour-weather [hourlyForecast]="hourlyForecast"></seven-hour-weather>

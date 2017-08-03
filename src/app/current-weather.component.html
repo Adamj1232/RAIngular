@@ -1,9 +1,12 @@
-<div class='current' *ngIf="weather">
-  <h1 class='current-location'>{{ weather['current_observation'].display_location.full }}</h1>
-  <img class='main-img' src ="{{ weather['current_observation'].icon_url }}" />
-  <h2>{{ weather['current_observation'].weather }}</h2>
-  <h3>{{ weather['current_observation'].local_time_rfc822 }}</h3>
-  <h3>{{ weather['current_observation'].tempurature_string }}</h3>
-  <h3 class='high-temp'>{{ weather['forecast'].simpleforecast.forecastday[0].high.fahrenheit }}°F/<span class='low-temp'>{{ weather['forecast'].simpleforecast.forecastday[0].low.fahrenheit }}°F</span></h3>
-  <h3>{{ weather['forecast'].txt_forecast.forecastday[0].fcttext }}</h3>
+<div *ngIf="weather">
+  <div class='current' >
+    <h1 class='current-location'>{{ weather['current_observation'].display_location.full }}</h1>
+    <img class='main-img' src ="{{ weather['current_observation'].icon_url }}" />
+    <h2>{{ weather['current_observation'].weather }}</h2>
+    <h3>{{ weather['current_observation'].local_time_rfc822 }}</h3>
+    <h3>{{ weather['current_observation'].tempurature_string }}</h3>
+    <h3 class='high-temp'>{{ weather['forecast'].simpleforecast.forecastday[0].high.fahrenheit }}°F/<span class='low-temp'>{{ weather['forecast'].simpleforecast.forecastday[0].low.fahrenheit }}°F</span></h3>
+    <h3>{{ weather['forecast'].txt_forecast.forecastday[0].fcttext }}</h3>
+  </div>
+
 </div>
