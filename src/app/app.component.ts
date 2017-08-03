@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
   private zip: string = '';
   private zipAlert: string = '5 Digit Zip code required';
   private locationAlert: string = ''
+  private locationWeather: object = {}
+  private hourlyForecast: object = {}
 
 
    constructor(private http: HttpClient, fb: FormBuilder, public weatherServ: WeatherService){
@@ -47,11 +49,8 @@ export class AppComponent implements OnInit {
         if(!resp['response'].error){
           this.locationWeather = resp
           this.hourlyForecast = resp['hourly_forecast']
-          this.searchedLocation = resp['current_observation'].display_location.full
-          this.currentWeatherCleaner(resp)
           this.rForm.reset()
-          localStorage.setItem('storedLocation', this.zip);
-          console.log(this.locationWeather)
+          localStorage.setItem('storedLocation', searched.zip);
         } else {
           this.locationAlert = resp['response'].error.description
           console.log(resp['response'].error.description)
